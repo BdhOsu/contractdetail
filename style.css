@@ -1,0 +1,34 @@
+h1{
+    background-color: #36aabe;
+    padding: 10px;
+    font-family: cursive;
+    font-size: large;
+    color: rgb(25, 72, 143);
+    position: relative;
+    padding-left: 40%;
+}
+
+/* header{
+    background-color: rgb(53, 87, 187);
+    padding: 10px;
+    font-family: cursive;
+    color: brown;
+} */
+div{
+padding-left: 40%;
+color: rgb(236, 41, 27);
+position: absolute;
+font-size: larger;
+}
+
+
+table th, td {
+    border-radius: 2px solid blue;
+    padding: 11px;
+}
+
+
+t1{
+    border-radius: 2px solid blue;
+    padding: 11px;
+}
