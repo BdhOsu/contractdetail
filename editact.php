@@ -1,22 +1,22 @@
-<!-- Update action of database -->
 <?php
+session_start();
+if (!isset($_SESSION['user'])) {
+    header("Location: login.php");
+    exit;
+}
 
 include 'db.php';
 
-$id = $_POST['id'];   //fetch from db.php which is id of database
-$name=$_POST['name'];   //fetch from edit.php which is id of input type name
-$phone=$_POST['contact'];   //fetch from edit.php which is id of input type contact
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $id = isset($_POST['id']) ? intval($_POST['id']) : 0;
+    $name = isset($_POST['name']) ? mysqli_real_escape_string($conn, trim($_POST['name'])) : '';
+    $phone = isset($_POST['contact']) ? mysqli_real_escape_string($conn, trim($_POST['contact'])) : '';
 
-// "UPDATE `names` SET `name` = '$name', `phone` = '$phone' WHERE `names`.`id` = $id;"
-
-// $sql = "UPDATE 'names' SET 'name'='$name', 'phone'='$numb' WHERE 'id'='$id'";
-// $update =mysqli_query($conn, $sql);
-$update = mysqli_query ($conn, "UPDATE `names` SET `name` = '$name', `phone` = '$phone' WHERE `names`.`id` = $id");
-
-if($update){
-    header("location:index.php");
+    if ($id > 0 && !empty($name) && !empty($phone)) {
+        $update = mysqli_query($conn, "UPDATE `names` SET `name` = '$name', `phone` = '$phone' WHERE `id` = $id");
+    }
 }
-else{
-    echo "error";
-}
+
+header("Location: index.php");
+exit;
 ?>
