@@ -1,34 +1,99 @@
-h1{
-    background-color: #36aabe;
-    padding: 10px;
-    font-family: cursive;
-    font-size: large;
-    color: rgb(25, 72, 143);
-    position: relative;
-    padding-left: 40%;
+* {
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
-/* header{
-    background-color: rgb(53, 87, 187);
-    padding: 10px;
-    font-family: cursive;
-    color: brown;
-} */
-div{
-padding-left: 40%;
-color: rgb(236, 41, 27);
-position: absolute;
-font-size: larger;
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f7f9fc;
+    color: #333;
 }
 
-
-table th, td {
-    border-radius: 2px solid blue;
-    padding: 11px;
+header h1 {
+    background-color: #2a5298;
+    padding: 14px 20px;
+    margin: 0;
+    font-size: 20px;
+    color: #ffffff;
+    text-align: center;
+    letter-spacing: 1px;
 }
 
+.main {
+    max-width: 600px;
+    margin: 40px auto;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
 
-t1{
-    border-radius: 2px solid blue;
-    padding: 11px;
+.main label {
+    font-weight: 600;
+    color: #444;
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
+.main input[type="text"],
+.main input[type="number"],
+.main input[type="password"] {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 15px;
+    margin-bottom: 12px;
+}
+
+.main input[type="submit"] {
+    background-color: #2a5298;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.main input[type="submit"]:hover {
+    background-color: #1e3c72;
+}
+
+table#t1 {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    background-color: #fff;
+}
+
+table#t1 th {
+    background-color: #f1f4f9;
+    color: #333;
+    padding: 12px;
+    text-align: left;
+    border-bottom: 2px solid #dde2ec;
+}
+
+table#t1 td {
+    padding: 12px;
+    border-bottom: 1px solid #eef1f6;
+    color: #444;
+}
+
+table#t1 tr:hover {
+    background-color: #f8fafc;
+}
+
+table#t1 a {
+    color: #2a5298;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+table#t1 a:hover {
+    text-decoration: underline;
 }

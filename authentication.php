@@ -1,23 +1,35 @@
-<?php      
-    include('logincon.php');  
-    $username = $_POST['user'];  
-    $password = $_POST['pass'];  
-      
-        //to prevent from mysqli injection  
-        $username = stripcslashes($username);  
-        $password = stripcslashes($password);  
-        $username = mysqli_real_escape_string($con, $username);  
-        $password = mysqli_real_escape_string($con, $password);  
-      
-        $sql = "select *from login where username = '$username' and password = '$password'";  
-        $result = mysqli_query($con, $sql);  
-        $row = mysqli_fetch_array($result, MYSQLI_ASSOC);  
-        $count = mysqli_num_rows($result);  
-          
-        if($count == 1){  
-            echo "<h1><center> Login successful </center></h1>";  
-        }  
-        else{  
-            echo "<h1> Login failed. Invalid username or password.</h1>";  
-        }     
-?>  
+<?php
+session_start();
+include('logincon.php');
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $username = isset($_POST['user']) ? trim($_POST['user']) : '';
+    $password = isset($_POST['pass']) ? trim($_POST['pass']) : '';
+
+    if (!empty($username) && !empty($password)) {
+        // Use prepared statements to prevent SQL injection
+        $stmt = mysqli_prepare($con, "SELECT id, username, password FROM login WHERE username = ?");
+        if ($stmt) {
+            mysqli_stmt_bind_param($stmt, "s", $username);
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt);
+
+            if ($row = mysqli_fetch_assoc($result)) {
+                // Verify plaintext password or hashed password
+                if ($row['password'] === $password || password_verify($password, $row['password'])) {
+                    $_SESSION['user'] = $row['username'];
+                    header("Location: index.php");
+                    exit;
+                }
+            }
+            mysqli_stmt_close($stmt);
+        }
+    }
+    // Redirect back to login with error parameter if authentication fails
+    header("Location: login.php?error=invalid");
+    exit;
+} else {
+    header("Location: login.php");
+    exit;
+}
+?>
